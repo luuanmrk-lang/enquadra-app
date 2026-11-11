@@ -9,8 +9,6 @@ import { Botao } from '../../../components/ui';
 import { TOL_GIRO, TOL_INCLINACAO, useNivel } from '../../../lib/nivel';
 import { useProjeto, useStore } from '../../../lib/store';
 
-const ULTRA = 'AVCaptureDeviceTypeBuiltInUltraWideCamera';
-const WIDE = 'AVCaptureDeviceTypeBuiltInWideAngleCamera';
 const VERDE = '#3DDC84', VERMELHO = '#FF4D4D';
 
 export default function Camera() {
@@ -21,7 +19,8 @@ export default function Camera() {
   const [perm, pedir] = useCameraPermissions();
   const cam = useRef<CameraView>(null);
   const [pronta, setPronta] = useState(false);
-  const [lentes, setLentes] = useState<string[]>([]);
+  const [ultra, setUltra] = useState<string | null>(null);
+  const [wide, setWide] = useState<string | null>(null);
   const [lente, setLente] = useState<string | undefined>(undefined);
   const [salvando, setSalvando] = useState(false);
   const [girado, setGirado] = useState(false);
@@ -47,11 +46,12 @@ export default function Camera() {
     setPronta(true);
     if (Platform.OS !== 'ios') return;
     try {
-      const ls = (await cam.current?.getAvailableLensesAsync()) ?? [];
-      const tipos = ls.map(l => l.deviceType);
-      setLentes(tipos);
-      if (f?.zoom === '0,5x' && tipos.includes(ULTRA)) setLente(ULTRA);
-      else if (tipos.includes(WIDE)) setLente(WIDE);
+      const ls: string[] = ((await cam.current?.getAvailableLensesAsync()) ?? []).map((l: unknown) => String(l));
+      const u = ls.find(l => /ultra/i.test(l)) ?? null;
+      const w = ls.find(l => /wide/i.test(l) && !/ultra/i.test(l)) ?? ls.find(l => !/ultra|tele|front|dual|triple/i.test(l)) ?? null;
+      setUltra(u); setWide(w);
+      if (f?.zoom === '0,5x' && u) setLente(u);
+      else if (w) setLente(w);
     } catch {}
   }
 
@@ -86,7 +86,7 @@ export default function Camera() {
   const cor = nivel.ok ? VERDE : VERMELHO;
   const incl = Math.round(nivel.inclinacao);
   const giro = Math.max(-25, Math.min(25, nivel.giro));
-  const temUltra = lentes.includes(ULTRA);
+  const temUltra = !!(ultra && wide);
 
   return (
     <View style={s.preto}>
@@ -153,7 +153,7 @@ export default function Camera() {
       <View style={[s.lateral, { right: Math.max(ins.right, 16) }]}>
         {temUltra ? (
           <View style={s.lentes}>
-            {[[ULTRA, '0,5x'], [WIDE, '1x']].map(([tipo, rot]) => (
+            {([[ultra!, '0,5x'], [wide!, '1x']] as [string, string][]).map(([tipo, rot]) => (
               <Pressable key={tipo} onPress={() => setLente(tipo)} style={[s.lente, lente === tipo && { backgroundColor: 'rgba(255,255,255,0.9)' }]}>
                 <Text style={{ color: lente === tipo ? '#000' : '#fff', fontWeight: '800', fontSize: 13 }}>{rot}</Text>
               </Pressable>
