@@ -1,9 +1,9 @@
-import { router, useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from '../nav';
 import React, { useState } from 'react';
 import { Alert, Image, Modal, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
-import { Botao, Cartao, T } from '../../../components/ui';
-import { progresso, useProjeto, useStore } from '../../../lib/store';
-import { useTema } from '../../../lib/theme';
+import { Botao, Cartao, T } from '../components/ui';
+import { progresso, useProjeto, useStore } from '../lib/store';
+import { useTema } from '../lib/theme';
 
 export default function Revisao() {
   const t = useTema();

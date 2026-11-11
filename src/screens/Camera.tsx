@@ -1,13 +1,13 @@
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import * as Haptics from 'expo-haptics';
-import { router, useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from '../nav';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import React, { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Botao } from '../../../components/ui';
-import { TOL_GIRO, TOL_INCLINACAO, useNivel } from '../../../lib/nivel';
-import { useProjeto, useStore } from '../../../lib/store';
+import { Botao } from '../components/ui';
+import { TOL_GIRO, TOL_INCLINACAO, useNivel } from '../lib/nivel';
+import { useProjeto, useStore } from '../lib/store';
 
 const VERDE = '#3DDC84', VERMELHO = '#FF4D4D';
 

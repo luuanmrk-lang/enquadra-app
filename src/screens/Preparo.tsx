@@ -1,11 +1,11 @@
 import * as Haptics from 'expo-haptics';
-import { router, useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from '../nav';
 import React from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { Botao, T } from '../../../components/ui';
-import { PREPARO } from '../../../lib/roteiro';
-import { useProjeto, useStore } from '../../../lib/store';
-import { useTema } from '../../../lib/theme';
+import { Botao, T } from '../components/ui';
+import { PREPARO } from '../lib/roteiro';
+import { useProjeto, useStore } from '../lib/store';
+import { useTema } from '../lib/theme';
 
 export default function Preparo() {
   const t = useTema();

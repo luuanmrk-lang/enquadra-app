@@ -1,10 +1,10 @@
-import { router, Stack, useLocalSearchParams } from 'expo-router';
+import { router, Stack, useLocalSearchParams } from '../nav';
 import React, { useEffect, useRef } from 'react';
 import { Alert, Image, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
-import { Ilustracao } from '../../../components/Ilustracao';
-import { Botao, Cartao, T } from '../../../components/ui';
-import { useProjeto, useStore } from '../../../lib/store';
-import { useTema } from '../../../lib/theme';
+import { Ilustracao } from '../components/Ilustracao';
+import { Botao, Cartao, T } from '../components/ui';
+import { useProjeto, useStore } from '../lib/store';
+import { useTema } from '../lib/theme';
 
 export default function FotoDetalhe() {
   const t = useTema();

@@ -1,10 +1,10 @@
-import { router, useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from '../nav';
 import React from 'react';
 import { Alert, ScrollView, View } from 'react-native';
-import { Barra, Botao, Cartao, corStatus, Pilula, T } from '../../../components/ui';
-import { PLANOS, PREPARO } from '../../../lib/roteiro';
-import { progresso, STATUS_LABEL, useProjeto, useStore } from '../../../lib/store';
-import { useTema } from '../../../lib/theme';
+import { Barra, Botao, Cartao, corStatus, Pilula, T } from '../components/ui';
+import { PLANOS, PREPARO } from '../lib/roteiro';
+import { progresso, STATUS_LABEL, useProjeto, useStore } from '../lib/store';
+import { useTema } from '../lib/theme';
 
 export default function ProjetoHub() {
   const t = useTema();

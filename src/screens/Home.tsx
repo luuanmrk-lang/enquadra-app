@@ -1,4 +1,4 @@
-import { router } from 'expo-router';
+import { router } from '../nav';
 import React, { useMemo, useState } from 'react';
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';

@@ -1,9 +1,9 @@
-import { router, useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from '../nav';
 import React from 'react';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { T } from '../../../components/ui';
-import { useProjeto } from '../../../lib/store';
-import { useTema } from '../../../lib/theme';
+import { T } from '../components/ui';
+import { useProjeto } from '../lib/store';
+import { useTema } from '../lib/theme';
 
 export default function Ambientes() {
   const t = useTema();
