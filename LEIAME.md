@@ -14,7 +14,7 @@
    - Android: pelo botão "Scan QR code" dentro do Expo Go.
 5. Celular e computador precisam estar no mesmo Wi-Fi. Se não conectar, rode `npx expo start --tunnel`.
 
-> Projeto em Expo SDK 54, a versão aceita pelo Expo Go da App Store.
+> Projeto em Expo SDK 58 (versão atual do Expo Go).
 
 ## O que tem nesta versão
 - Início com agenda de 14 dias, contadores e lista de projetos

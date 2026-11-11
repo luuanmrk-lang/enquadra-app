@@ -46,7 +46,7 @@ export default function Camera() {
     setPronta(true);
     if (Platform.OS !== 'ios') return;
     try {
-      const ls: string[] = ((await cam.current?.getAvailableLensesAsync()) ?? []).map((l: unknown) => String(l));
+      const ls: string[] = ((await cam.current?.getAvailableLensesAsync()) ?? []).map((l: unknown) => (typeof l === 'string' ? l : String((l as { deviceType?: string }).deviceType ?? '')));
       const u = ls.find(l => /ultra/i.test(l)) ?? null;
       const w = ls.find(l => /wide/i.test(l) && !/ultra/i.test(l)) ?? ls.find(l => !/ultra|tele|front|dual|triple/i.test(l)) ?? null;
       setUltra(u); setWide(w);
